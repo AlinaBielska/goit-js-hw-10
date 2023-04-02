@@ -12,7 +12,7 @@ const DEBOUNCE_DELAY = 300;
 input.addEventListener("input", debounce(() => {
     fetchCountries()
         .then((countries) => renderCountryList(countries))
-        .catch((error) => Notiflix.Notify.failure('Oops, there is no country with that name'));
+        .catch(Notiflix.Notify.failure('Oops, there is no country with that name'));
 }, DEBOUNCE_DELAY))
 
 function renderCountryList(countries) {
@@ -30,7 +30,7 @@ function renderCountryList(countries) {
         const markupFlagName = countries
         .map(({ flags, name }) => {
             return `
-            <li>
+            <li class = "li-text">
             <img src = ${flags.svg} width = 50; height = 40 /> ${name.official}
             </li>
             `;
@@ -41,8 +41,9 @@ function renderCountryList(countries) {
         const markupFlagName = countries
         .map(({ flags, name }) => {
             return `
-            <li>
-            <img src = ${flags.svg} width = 50; height = 40 /> ${name.official}
+            <li class = "list-li">
+            <img src = ${flags.svg} width = 50; height = 40 />
+            <p>${name.official}</p>
             </li>
             `;
         }).join("");
