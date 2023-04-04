@@ -12,7 +12,9 @@ const DEBOUNCE_DELAY = 300;
 input.addEventListener("input", debounce(() => {
     fetchCountries()
         .then((countries) => renderCountryList(countries))
-        .catch(Notiflix.Notify.failure('Oops, there is no country with that name'));
+        .catch(() => Notiflix.Notify.failure('Oops, there is no country with that name'));
+    countryInfo.innerHTML = "";
+    countryList.innerHTML = "";
 }, DEBOUNCE_DELAY))
 
 function renderCountryList(countries) {
