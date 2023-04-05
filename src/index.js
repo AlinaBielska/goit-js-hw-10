@@ -9,8 +9,10 @@ const countryInfo = document.querySelector(".country-info");
 const DEBOUNCE_DELAY = 300;
 
 
-input.addEventListener("input", debounce(() => {
-    fetchCountries()
+input.addEventListener("input", debounce((e) => {
+    const inputValue = e.target.value.trim();
+    console.log(inputValue);
+    fetchCountries(inputValue)
         .then((countries) => renderCountryList(countries))
         .catch(() => Notiflix.Notify.failure('Oops, there is no country with that name'));
     countryInfo.innerHTML = "";
